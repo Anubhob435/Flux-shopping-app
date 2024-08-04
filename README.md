@@ -117,11 +117,14 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 For any questions or feedback, please contact the project maintainer at [anubhob435@gmail.com](mailto:your-email@example.com).
 
-## Screenshots![Screenshot 2024-08-04 170321](https://github.com/user-attachments/assets/d92b2583-ad62-4dd5-8776-4d9f6b84c7e8)
-![Screenshot 2024-08-04 170150](https://github.com/user-attachments/assets/3c44b482-734e-4e1d-8640-6e3a214c1676)
+## Screenshots
+
+![Screenshot 2024-08-04 170321](https://github.com/user-attachments/assets/d92b2583-ad62-4dd5-8776-4d9f6b84c7e8)
+
 ![Screenshot 2024-08-04 170057](https://github.com/user-attachments/assets/d3e1613a-06f3-4326-8b4e-80d8f676cb17)
+
 ![Screenshot 2024-08-04 170031](https://github.com/user-attachments/assets/670900e1-1fc7-4ae5-8905-9604f596fd88)
-![Screenshot 2024-08-03 222232](https://github.com/user-attachments/assets/9fbbc472-eb3d-4eab-8d00-528cd755df3f)
-![Screenshot 2024-08-03 221128](https://github.com/user-attachments/assets/3f52d099-a11d-411d-9729-d2d63387761a)
+
+![Screenshot 2024-08-04 170150](https://github.com/user-attachments/assets/3c44b482-734e-4e1d-8640-6e3a214c1676)
 
 
