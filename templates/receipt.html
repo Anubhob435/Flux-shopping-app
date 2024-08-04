@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .total, .discount {
+            margin: 10px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .message {
+            margin: 20px 0;
+            font-size: 16px;
+            color: #666;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .remaining-balance {
+            font-size: 18px;
+            font-weight: bold;
+            color: #009900;
+        }
+        .discount {
+            color: #ff9900;
+        }
+        .total {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Receipt</h1>
+        <p class="message">Thank you for shopping with us!</p>
+        <p class="total">Total Amount: Rs. {{ total }}</p>
+        {% if discount %}
+            <p class="discount">Congratulations! You won a 50% discount! You saved Rs. {{ discount }}</p>
+        {% else %}
+            <p class="discount">Sorry, no discount this time.</p>
+        {% endif %}
+        <p class="remaining-balance">Remaining Balance: Rs. {{ remaining_balance }}</p>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>

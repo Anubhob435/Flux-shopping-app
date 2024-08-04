@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        h2 {
+            color: #333;
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            text-align: left;
+            font-size: 16px;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        input[type="number"] {
+            width: 70px;
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .balance {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Shop</h1>
+        <p class="balance">Your balance: Rs. {{ balance }}</p>
+        <form method="post">
+            {% for key, item in items.items() %}
+                <label>
+                    <input type="checkbox" name="item" value="{{ item }}">
+                    {{ item }} (Rs. {{ prices[item] }}/kg):
+                    <input type="number" name="quantity" min="1" required>
+                </label><br>
+            {% endfor %}
+            <button type="submit">Checkout</button>
+        </form>
+
+        <h2>Guess the Number</h2>
+        <form method="post">
+            <label for="guess">Guess a number between 1 and 5:</label>
+            <input type="number" id="guess" name="guess" min="1" max="5" required>
+            <button type="submit" name="guess_number">Submit Guess</button>
+        </form>
+
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>
