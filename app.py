@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import random
 import mysql.connector
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'your_secret_key'  # Required for session management
 
 # Constants for database connection

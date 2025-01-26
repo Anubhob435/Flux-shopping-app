@@ -1,51 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        h1 {
-            color: #333; /* Dark gray color */
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        a {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            color: white;
-            background-color: #007bff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        a:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeVault - Premium Software Marketplace</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Flux Shopping 🛒</h1>
-        <a href="{{ url_for('register') }}">Register</a>
-        <a href="{{ url_for('login') }}">Login</a>
-    </div>
+    <!-- HEADER / NAVBAR -->
+    <header class="nav-container">
+        <div class="nav-content">
+            <a href="#" class="logo">Code<span>Vault</span><i class="fas fa-code"></i></a>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#categories">Categories</a>
+                <a href="#trending">Trending</a>
+                <a href="#features">Features</a>
+                <a href="{{ url_for('login') }}" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="container">
+                <i class="fas fa-code-branch floating-icon"></i>
+                <h1><span class="logo-text">Code<span>Vault</span><i class="fas fa-code"></i></span> Your Premium Software Marketplace</h1>
+                <div class="subtitle-container">
+                    <i class="fas fa-rocket subtitle-icon"></i>
+                    <p class="subtitle">Discover, Download, and Deploy Quality Code</p>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for software solutions...">
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIES SECTION -->
+        <section id="categories" class="categories-section">
+            <div class="container">
+                <h2>Browse Categories</h2>
+                <div class="category-grid">
+                    <div class="category-card fade-in">
+                        <i class="fab fa-python"></i>
+                        <h3>Python</h3>
+                        <p>AI, Data Science, Web Apps</p>
+                    </div>
+                    <div class="category-card fade-in">
+                        <i class="fab fa-java"></i>
+                        <h3>Java</h3>
+                        <p>Enterprise, Android, Spring</p>
+                    </div>
+                    <div class="category-card fade-in">
+                        <i class="fas fa-code"></i>
+                        <h3>C/C++</h3>
+                        <p>System, Games, Performance</p>
+                    </div>
+                    <div class="category-card fade-in">
+                        <i class="fab fa-js"></i>
+                        <h3>JavaScript</h3>
+                        <p>Web, Node.js, React</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRENDING SECTION -->
+        <section id="trending" class="trending-section">
+            <div class="container">
+                <h2>Trending Now</h2>
+                <div class="trending-grid">
+                    <div class="trending-card fade-in">
+                        <i class="fas fa-chart-line card-icon"></i>
+                        <h3>Data Analytics</h3>
+                        <p>Advanced data processing and visualization tools</p>
+                        <div class="card-footer">
+                            <span class="price">Free</span>
+                            <button class="card-btn">Get Access</button>
+                        </div>
+                    </div>
+                    <div class="trending-card fade-in">
+                        <i class="fas fa-brain card-icon"></i>
+                        <h3>AI & Machine Learning</h3>
+                        <p>Neural networks and deep learning frameworks</p>
+                        <div class="card-footer">
+                            <span class="price">Free</span>
+                            <button class="card-btn">Get Access</button>
+                        </div>
+                    </div>
+                    <div class="trending-card fade-in">
+                        <i class="fas fa-shield-alt card-icon"></i>
+                        <h3>Cyber Security</h3>
+                        <p>Enterprise-grade security solutions</p>
+                        <div class="card-footer">
+                            <span class="price">Free</span>
+                            <button class="card-btn">Get Access</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2>Why Choose CodeVault?</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-vault feature-icon"></i>
+                        <h3>Secure Vault</h3>
+                        <p>Store your precious code with enterprise-grade security and version control</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-graduation-cap feature-icon"></i>
+                        <h3>Student Benefits</h3>
+                        <p>All software solutions are completely free for students</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fab fa-github feature-icon"></i>
+                        <h3>Instant Access</h3>
+                        <p>Direct integration with your GitHub account for seamless deployment</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CodeVault</h3>
+                    <p>Premium Software Marketplace</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>
