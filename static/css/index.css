@@ -286,7 +286,7 @@ h2 {
 .search-box input {
     background: none;
     border: none;
-    color: var(--light);
+    color: var (--light);
     width: 100%;
     padding: 0 1rem;
     font-size: 1.1rem;
@@ -449,6 +449,117 @@ a:active::after {
 .trending-section {
     background: var(--darker);
     padding: 4rem 0;
+}
+
+/* Updated Footer Styles */
+.footer {
+    background: var(--darker);
+    padding: 4rem 0 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.brand-section {
+    flex: 1;
+}
+
+.footer-links-container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.footer-link {
+    color: #888;
+    text-decoration: none;
+    background: none;
+    padding: 0;
+    transition: color 0.3s ease;
+    flex: initial;
+    box-shadow: none;
+    border-radius: 0;
+    white-space: nowrap;
+}
+
+.footer-link:hover {
+    color: var(--accent);
+    background: none;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Mobile Footer Styles */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-links-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .brand-section {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+}
+
+.footer-section h3 {
+    color: var(--light);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: #888;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-link {
+    color: #888;
+    text-decoration: none;
+    background: none;
+    padding: 0;
+    transition: color 0.3s ease;
+    flex: initial;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.footer-link:hover {
+    color: var(--accent);
+    background: none;
+    transform: none;
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        text-align: center;
+    }
+    
+    .footer-links {
+        align-items: center;
+    }
 }
 
 .footer {

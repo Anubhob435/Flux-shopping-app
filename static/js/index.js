@@ -87,12 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Mobile menu toggle
-    const menuToggle = document.createElement('button');
-    menuToggle.classList.add('menu-toggle');
-    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    
+    const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.nav-links');
-    document.querySelector('.nav-content').prepend(menuToggle);
 
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('show');
