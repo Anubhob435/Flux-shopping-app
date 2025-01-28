@@ -1,0 +1,238 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #4f46e5;
+    --dark: #0f172a;
+    --darker: #020617;
+    --light: #f8fafc;
+    --card: #1e293b;
+    --accent: #22d3ee;
+    --github: #24292e;
+    --google: #ea4335;
+}
+
+/* Base styles matching login.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    width: 100%;
+    max-width: 800px;  /* Increased from 400px */
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* Form styles */
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Social login section improvements */
+.social-section {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0;  /* Removed padding */
+    text-align: center;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    margin: 1rem 0;  /* Reduced from 1.5rem */
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;  /* Reduced from 1.5rem */
+}
+
+.social-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: none;
+    color: var(--light);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-weight: 500;
+}
+
+.social-btn i {
+    font-size: 1.2rem;
+}
+
+.github-btn {
+    background: var(--github);
+}
+
+.google-btn {
+    background: var(--google);
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Form layout */
+.form-row {
+    display: flex;
+    gap: 2rem;  /* Increased gap between form fields */
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+.input-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Updated create account button */
+.create-account-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1.5rem 0;
+    max-width: 400px;
+    display: block;
+    margin: 1.5rem auto;
+}
+
+.create-account-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(45deg, var(--secondary), var(--primary));
+}
+
+/* Updated sign in link */
+.signin-link {
+    color: var(--light);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.signin-link:hover {
+    color: var(--accent);
+}
+
+/* Links container adjustments */
+.links-container {
+    text-align: center;
+    margin-top: 1rem;    /* Reduced from 1.5rem */
+    padding-top: 0.75rem;  /* Reduced from 1rem */
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.links-container a {
+    display: block;
+    margin: 0.5rem 0;
+    color: var(--light);  /* Changed both links to white */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.links-container a:hover {
+    color: var(--accent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
+    .container {
+        max-width: 95%;
+        padding: 2rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Update heading style to match login page */
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Rest of common styles from login.css */
+/* ...existing code for h1, button, animations, etc... */
