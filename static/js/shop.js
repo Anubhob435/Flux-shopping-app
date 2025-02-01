@@ -127,4 +127,19 @@ document.addEventListener('DOMContentLoaded', () => {
             featuredItems.classList.toggle('show');
         });
     });
+
+    // Profile dropdown toggle
+    const userProfile = document.querySelector('.user-profile');
+    const profileDropdown = document.querySelector('.profile-dropdown');
+
+    userProfile.addEventListener('click', () => {
+        profileDropdown.classList.toggle('show');
+    });
+
+    // Close profile dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!userProfile.contains(e.target)) {
+            profileDropdown.classList.remove('show');
+        }
+    });
 });
