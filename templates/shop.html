@@ -1,106 +1,300 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shop</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 450px;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-            font-size: 28px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        h2 {
-            color: #333;
-            font-size: 22px;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            text-align: left;
-            font-size: 16px;
-        }
-        input[type="checkbox"] {
-            margin-right: 10px;
-            transform: scale(1.2);
-        }
-        input[type="number"] {
-            width: 70px;
-            padding: 8px;
-            font-size: 16px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        a {
-            display: block;
-            margin-top: 15px;
-            color: #007bff;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .balance {
-            font-size: 20px;
-            color: #666;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
-    </style>
+    <title>Code Vault - Flux</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the Shop</h1>
-        <p class="balance">Your balance: Rs. {{ balance }}</p>
-        <form method="post">
-            {% for key, item in items.items() %}
-                <label>
-                    <input type="checkbox" name="item" value="{{ item }}">
-                    {{ item }} (Rs. {{ prices[item] }}/kg):
-                    <input type="number" name="quantity" min="1" required>
-                </label><br>
-            {% endfor %}
-            <button type="submit">Checkout</button>
-        </form>
+    <!-- Top Panel -->
+    <header class="top-panel">
+        <div class="search-container">
+            <input type="text" placeholder="Search for code snippets...">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="user-actions">
+            <button class="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </button>
+            <div class="user-profile">
+                <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="Profile">
+                <span>Balance: ${{ balance }}</span>
+            </div>
+        </div>
+    </header>
 
-        <h2>Guess the Number</h2>
-        <form method="post">
-            <label for="guess">Guess a number between 1 and 5:</label>
-            <input type="number" id="guess" name="guess" min="1" max="5" required>
-            <button type="submit" name="guess_number">Submit Guess</button>
-        </form>
+    <!-- Add after the header -->
+    <button class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
 
-        <a href="/">Back to Home</a>
+    <!-- Side Panel -->
+    <nav class="side-panel">
+        <div class="side-panel-content">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Code Vault</span>
+            </div>
+            
+            <div class="categories-section">
+                <div class="category-item">
+                    <div class="category-header active">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>Web Development</span>
+                    </div>
+                    <div class="featured-items show">
+                        <div class="featured-item">
+                            <span>React Templates</span>
+                            <span class="badge hot">HOT</span>
+                        </div>
+                        <div class="featured-item">
+                            <span>Vue.js Components</span>
+                            <span class="badge new">NEW</span>
+                        </div>
+                        <div class="featured-item">
+                            <span>Next.js Starters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-header">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Mobile Apps</span>
+                    </div>
+                    <div class="featured-items">
+                        <div class="featured-item">
+                            <span>Flutter UI Kits</span>
+                            <span class="badge hot">HOT</span>
+                        </div>
+                        <div class="featured-item">
+                            <span>React Native Components</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-header">
+                        <i class="fas fa-robot"></i>
+                        <span>AI/ML</span>
+                    </div>
+                    <div class="featured-items">
+                        <div class="featured-item">
+                            <span>TensorFlow Models</span>
+                            <span class="badge new">NEW</span>
+                        </div>
+                        <div class="featured-item">
+                            <span>PyTorch Examples</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more categories with featured items -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="featured-section">
+            <h2>Featured Code</h2>
+            <div class="code-grid">
+                <!-- Code Cards -->
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fas fa-react"></i>
+                        <span class="language">React.js</span>
+                    </div>
+                    <h3>E-commerce Dashboard</h3>
+                    <p>Complete dashboard with authentication and admin panel</p>
+                    <div class="card-footer">
+                        <span class="price">$49.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- New code cards -->
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fab fa-vuejs"></i>
+                        <span class="language">Vue.js</span>
+                    </div>
+                    <h3>Admin Dashboard Pro</h3>
+                    <p>Full-featured admin panel with dark mode and analytics</p>
+                    <div class="card-footer">
+                        <span class="price">$39.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fab fa-node-js"></i>
+                        <span class="language">Node.js</span>
+                    </div>
+                    <h3>API Boilerplate</h3>
+                    <p>Complete REST API with authentication and MongoDB</p>
+                    <div class="card-footer">
+                        <span class="price">$29.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fab fa-python"></i>
+                        <span class="language">Python</span>
+                    </div>
+                    <h3>AI Chat Bot</h3>
+                    <p>Intelligent chatbot with natural language processing</p>
+                    <div class="card-footer">
+                        <span class="price">$59.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fab fa-angular"></i>
+                        <span class="language">Angular</span>
+                    </div>
+                    <h3>Social Media Kit</h3>
+                    <p>Complete social media platform components</p>
+                    <div class="card-footer">
+                        <span class="price">$44.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fab fa-swift"></i>
+                        <span class="language">Swift</span>
+                    </div>
+                    <h3>iOS UI Kit</h3>
+                    <p>Modern iOS components with SwiftUI</p>
+                    <div class="card-footer">
+                        <span class="price">$34.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fab fa-android"></i>
+                        <span class="language">Kotlin</span>
+                    </div>
+                    <h3>Android Starter</h3>
+                    <p>Material Design 3 components with Jetpack Compose</p>
+                    <div class="card-footer">
+                        <span class="price">$39.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fab fa-aws"></i>
+                        <span class="language">AWS</span>
+                    </div>
+                    <h3>Serverless Bundle</h3>
+                    <p>Complete serverless architecture with Lambda</p>
+                    <div class="card-footer">
+                        <span class="price">$79.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fas fa-database"></i>
+                        <span class="language">GraphQL</span>
+                    </div>
+                    <h3>API Gateway</h3>
+                    <p>GraphQL API gateway with type safety</p>
+                    <div class="card-footer">
+                        <span class="price">$49.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fab fa-docker"></i>
+                        <span class="language">DevOps</span>
+                    </div>
+                    <h3>CI/CD Pipeline</h3>
+                    <p>Complete DevOps pipeline with Docker and Jenkins</p>
+                    <div class="card-footer">
+                        <span class="price">$69.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span class="language">Flutter</span>
+                    </div>
+                    <h3>E-commerce App</h3>
+                    <p>Cross-platform e-commerce starter kit</p>
+                    <div class="card-footer">
+                        <span class="price">$54.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <div class="card-header">
+                        <i class="fas fa-brain"></i>
+                        <span class="language">TensorFlow</span>
+                    </div>
+                    <h3>ML Model Pack</h3>
+                    <p>Pre-trained machine learning models collection</p>
+                    <div class="card-footer">
+                        <span class="price">$89.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add this right before the cart sidebar -->
+    <div class="cart-overlay"></div>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="total">
+                <span>Total Amount</span>
+                <span class="total-amount">$0.00</span>
+            </div>
+            <button class="checkout-btn">
+                <i class="fas fa-lock"></i>
+                Secure Checkout
+            </button>
+        </div>
     </div>
+
+    <!-- Add loading screen -->
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/shop.js') }}"></script>
 </body>
 </html>
