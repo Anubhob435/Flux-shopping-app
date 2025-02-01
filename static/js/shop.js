@@ -81,6 +81,38 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.total-amount').textContent = `$${total.toFixed(2)}`;
     }
 
+    // Secure checkout functionality
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    checkoutBtn.addEventListener('click', () => {
+        // Calculate total from cart
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        
+        // Create a form dynamically
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/receipt';
+        
+        // Add hidden fields
+        const fields = {
+            'total': total,
+            'discount': 0,
+            'remaining_balance': parseFloat(document.querySelector('.user-profile span').textContent.replace(/[^0-9.]/g, '')),
+        };
+        
+        // Create and append hidden inputs
+        Object.entries(fields).forEach(([key, value]) => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = value;
+            form.appendChild(input);
+        });
+        
+        // Append form to body and submit
+        document.body.appendChild(form);
+        form.submit();
+    });
+
     // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const sidePanel = document.querySelector('.side-panel');

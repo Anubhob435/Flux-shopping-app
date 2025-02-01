@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import random
 import mysql.connector
+from datetime import datetime  # Add this import
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'your_secret_key'  # Required for session management
@@ -115,10 +116,11 @@ def shop(phone):
 '''
 
 
-
-
 @app.route('/shop/<phone>', methods=['GET', 'POST'])
 def shop(phone):
+    # Store phone in session when accessing shop
+    session['phone'] = phone
+    
     conn = connect_to_db()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM abc WHERE phone = %s", (phone,))
@@ -158,6 +160,42 @@ def shop(phone):
 
     return render_template('shop.html', items=ITEMS, prices=PRICES, balance=user[4])
 
+
+@app.route('/receipt', methods=['GET', 'POST'])
+def receipt():
+    if request.method == 'POST':
+        try:
+            # Get values from form data
+            total = float(request.form.get('total', 0))
+            discount = float(request.form.get('discount', 0))
+            remaining_balance = float(request.form.get('remaining_balance', 0))
+            
+            # Store in session
+            session['total'] = total
+            session['discount'] = discount
+            session['remaining_balance'] = remaining_balance
+            
+            return render_template(
+                'receipt.html',
+                total=total,
+                discount=discount,
+                remaining_balance=remaining_balance,
+                datetime=datetime,
+ # Pass phone to template
+            )
+        except Exception as e:
+            print(f"Error processing checkout: {e}")
+            return "Error processing checkout", 400
+    
+    # Handle GET request
+    return render_template(
+        'receipt.html',
+        total=session.get('total', 0),
+        discount=session.get('discount', 0),
+        remaining_balance=session.get('remaining_balance', 0),
+        datetime=datetime,
+        phone=session.get('phone')  # Pass phone to template
+    )
 
 
 if __name__ == '__main__':

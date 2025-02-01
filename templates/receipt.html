@@ -1,74 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Receipt</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .total, .discount {
-            margin: 10px 0;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .message {
-            margin: 20px 0;
-            font-size: 16px;
-            color: #666;
-        }
-        a {
-            display: inline-block;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .remaining-balance {
-            font-size: 18px;
-            font-weight: bold;
-            color: #009900;
-        }
-        .discount {
-            color: #ff9900;
-        }
-        .total {
-            color: #ff0000;
-        }
-    </style>
+    <title>Receipt - Code Vault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/receipt.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Receipt</h1>
-        <p class="message">Thank you for shopping with us!</p>
-        <p class="total">Total Amount: Rs. {{ total }}</p>
-        {% if discount %}
-            <p class="discount">Congratulations! You won a 50% discount! You saved Rs. {{ discount }}</p>
-        {% else %}
-            <p class="discount">Sorry, no discount this time.</p>
-        {% endif %}
-        <p class="remaining-balance">Remaining Balance: Rs. {{ remaining_balance }}</p>
-        <a href="/">Back to Home</a>
+        <div class="receipt-header">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h1>Payment Successful!</h1>
+            <p class="message">Thank you for shopping with Code Vault</p>
+        </div>
+
+        <div class="receipt-details">
+            <div class="detail-item">
+                <i class="fas fa-receipt"></i>
+                <div class="detail-content">
+                    <span class="label">Transaction ID</span>
+                    <span class="value">#{{ '%06x' % range(0x100000, 0xffffff) | random | int }}</span>
+                </div>
+            </div>
+            
+            <div class="detail-item">
+                <i class="fas fa-calendar"></i>
+                <div class="detail-content">
+                    <span class="label">Date</span>
+                    <span class="value">{{ datetime.now().strftime('%B %d, %Y') }}</span>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fas fa-clock"></i>
+                <div class="detail-content">
+                    <span class="label">Time</span>
+                    <span class="value">{{ datetime.now().strftime('%I:%M %p') }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="amount-section">
+            <div class="total">
+                <span>Total Amount</span>
+                <span class="amount">Rs. {{ total }}</span>
+            </div>
+            
+            {% if discount %}
+            <div class="discount">
+                <i class="fas fa-gift"></i>
+                <div class="discount-details">
+                    <span>Congratulations!</span>
+                    <span class="discount-text">50% Discount Applied</span>
+                    <span class="savings">You saved Rs. {{ discount }}</span>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="balance">
+                <span>Remaining Balance</span>
+                <span class="amount success">Rs. {{ remaining_balance }}</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="{{ url_for('shop', phone=phone) }}" class="btn secondary">
+                <i class="fas fa-shopping-cart"></i>
+                Continue Shopping
+            </a>
+            <a href="/" class="btn primary">
+                <i class="fas fa-home"></i>
+                Back to Home
+            </a>
+        </div>
+
+        <div class="support-section">
+            <p class="support-text">Need help? Contact our support</p>
+            <div class="support-actions">
+                <a href="mailto:support@codevault.com" class="support-link">
+                    <i class="fas fa-envelope"></i>
+                    support@codevault.com
+                </a>
+                <span class="divider">|</span>
+                <a href="tel:+1234567890" class="support-link">
+                    <i class="fas fa-phone"></i>
+                    +123 456 7890
+                </a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

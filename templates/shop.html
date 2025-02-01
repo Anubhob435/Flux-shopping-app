@@ -300,6 +300,14 @@
         <div class="loader"></div>
     </div>
 
+    <!-- Hidden form for checkout -->
+    <form id="checkout-form" action="{{ url_for('receipt') }}" method="POST" style="display: none;">
+        <input type="hidden" name="total" value="{{ total }}">
+        <input type="hidden" name="discount" value="{{ discount }}">
+        <input type="hidden" name="remaining_balance" value="{{ remaining_balance }}">
+        <input type="hidden" name="phone" value="{{ phone }}">
+    </form>
+
     <script src="{{ url_for('static', filename='js/shop.js') }}"></script>
 </body>
 </html>
