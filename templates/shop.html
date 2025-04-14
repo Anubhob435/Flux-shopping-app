@@ -3,17 +3,28 @@
 <head>
     <title>Code Vault - Flux</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <!-- Top Panel -->
     <header class="top-panel">
+        <div class="header-left">
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo-container">
+                <i class="fas fa-code"></i>
+                <span>Code Vault</span>
+            </div>
+        </div>
+
         <div class="search-container">
             <input type="text" placeholder="Search for code snippets...">
-            <i class="fas fa-search"></i>
+            <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
+        
         <div class="user-actions">
             <button class="cart-btn">
                 <i class="fas fa-shopping-cart"></i>
@@ -21,20 +32,15 @@
             </button>
             <div class="user-profile">
                 <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="Profile">
-                <span>Balance: ${{ balance }}</span>
+                <span class="balance">Balance: ${{ balance }}</span>
                 <div class="profile-dropdown">
-                    <button onclick="location.href='/account'">Account</button>
-                    <button onclick="location.href='/orders'">Orders</button>
-                    <button onclick="location.href='/'">Log out</button>
+                    <button onclick="location.href='/account'"><i class="fas fa-user"></i> Account</button>
+                    <button onclick="location.href='/orders'"><i class="fas fa-box"></i> Orders</button>
+                    <button onclick="location.href='/'"><i class="fas fa-sign-out-alt"></i> Log out</button>
                 </div>
             </div>
         </div>
     </header>
-
-    <!-- Add after the header -->
-    <button class="menu-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
 
     <!-- Side Panel -->
     <nav class="side-panel">
@@ -45,6 +51,7 @@
             </div>
             
             <div class="categories-section">
+                <h3 class="side-heading">Categories</h3>
                 <div class="category-item">
                     <div class="category-header active">
                         <i class="fas fa-laptop-code"></i>
@@ -96,173 +103,66 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Add more categories with featured items -->
+                
+                <h3 class="side-heading">Price Range</h3>
+                <div class="price-filter">
+                    <div class="price-range">
+                        <input type="range" min="0" max="100" value="100" class="price-slider" id="price-slider">
+                        <div class="price-labels">
+                            <span>$0</span>
+                            <span>$100</span>
+                        </div>
+                    </div>
+                    <div class="price-value">Max: $<span id="price-value">100</span></div>
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="apply-filters">Apply Filters</button>
+                    <button class="reset-filters">Reset</button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="featured-section">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+            <div class="welcome-content">
+                <h1>Welcome to Code Vault</h1>
+                <p>Discover premium code templates, components, and solutions</p>
+            </div>
+            <div class="welcome-actions">
+                <button class="explore-btn">Explore Collections</button>
+                <button class="newest-btn">Newest Arrivals</button>
+            </div>
+        </div>
+        
+        <div class="content-header">
             <h2>Featured Code</h2>
-            <div class="code-grid">
-                <!-- Code Cards -->
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fas fa-code"></i> <!-- Changed icon from React to generic code icon -->
-                        <span class="language">React.js</span>
-                    </div>
-                    <h3>E-commerce Dashboard</h3>
-                    <p>Complete dashboard with authentication and admin panel</p>
-                    <div class="card-footer">
-                        <span class="price">$49.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-                <!-- New code cards -->
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fab fa-vuejs"></i>
-                        <span class="language">Vue.js</span>
-                    </div>
-                    <h3>Admin Dashboard Pro</h3>
-                    <p>Full-featured admin panel with dark mode and analytics</p>
-                    <div class="card-footer">
-                        <span class="price">$39.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fab fa-node-js"></i>
-                        <span class="language">Node.js</span>
-                    </div>
-                    <h3>API Boilerplate</h3>
-                    <p>Complete REST API with authentication and MongoDB</p>
-                    <div class="card-footer">
-                        <span class="price">$29.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fab fa-python"></i>
-                        <span class="language">Python</span>
-                    </div>
-                    <h3>AI Chat Bot</h3>
-                    <p>Intelligent chatbot with natural language processing</p>
-                    <div class="card-footer">
-                        <span class="price">$59.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fab fa-angular"></i>
-                        <span class="language">Angular</span>
-                    </div>
-                    <h3>Social Media Kit</h3>
-                    <p>Complete social media platform components</p>
-                    <div class="card-footer">
-                        <span class="price">$44.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fab fa-swift"></i>
-                        <span class="language">Swift</span>
-                    </div>
-                    <h3>iOS UI Kit</h3>
-                    <p>Modern iOS components with SwiftUI</p>
-                    <div class="card-footer">
-                        <span class="price">$34.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fab fa-android"></i>
-                        <span class="language">Kotlin</span>
-                    </div>
-                    <h3>Android Starter</h3>
-                    <p>Material Design 3 components with Jetpack Compose</p>
-                    <div class="card-footer">
-                        <span class="price">$39.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fab fa-aws"></i>
-                        <span class="language">AWS</span>
-                    </div>
-                    <h3>Serverless Bundle</h3>
-                    <p>Complete serverless architecture with Lambda</p>
-                    <div class="card-footer">
-                        <span class="price">$79.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fas fa-database"></i>
-                        <span class="language">GraphQL</span>
-                    </div>
-                    <h3>API Gateway</h3>
-                    <p>GraphQL API gateway with type safety</p>
-                    <div class="card-footer">
-                        <span class="price">$49.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fab fa-docker"></i>
-                        <span class="language">DevOps</span>
-                    </div>
-                    <h3>CI/CD Pipeline</h3>
-                    <p>Complete DevOps pipeline with Docker and Jenkins</p>
-                    <div class="card-footer">
-                        <span class="price">$69.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span class="language">Flutter</span>
-                    </div>
-                    <h3>E-commerce App</h3>
-                    <p>Cross-platform e-commerce starter kit</p>
-                    <div class="card-footer">
-                        <span class="price">$54.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="card-header">
-                        <i class="fas fa-brain"></i>
-                        <span class="language">TensorFlow</span>
-                    </div>
-                    <h3>ML Model Pack</h3>
-                    <p>Pre-trained machine learning models collection</p>
-                    <div class="card-footer">
-                        <span class="price">$89.99</span>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
+            <div class="sort-controls">
+                <label for="sort-select">Sort by:</label>
+                <select id="sort-select">
+                    <option value="popular">Most Popular</option>
+                    <option value="newest">Newest</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Quick filters -->
+        <div class="quick-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="frontend">Frontend</button>
+            <button class="filter-btn" data-filter="backend">Backend</button>
+            <button class="filter-btn" data-filter="mobile">Mobile</button>
+            <button class="filter-btn" data-filter="ai">AI/ML</button>
+        </div>
+        
+        <div class="featured-section">
+            <div class="code-grid" id="code-grid">
+                <!-- Code cards will be dynamically loaded from items.json -->
             </div>
         </div>
     </main>
@@ -281,6 +181,7 @@
             <div class="empty-cart">
                 <i class="fas fa-shopping-cart"></i>
                 <p>Your cart is empty</p>
+                <button class="browse-items-btn">Browse Items</button>
             </div>
         </div>
         <div class="cart-footer">

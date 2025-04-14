@@ -1,0 +1,100 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "language": "React.js",
+      "icon": "fas fa-code",
+      "title": "E-commerce Dashboard",
+      "description": "Complete dashboard with authentication and admin panel",
+      "price": 49.99
+    },
+    {
+      "id": 2,
+      "language": "Vue.js",
+      "icon": "fab fa-vuejs",
+      "title": "Admin Dashboard Pro",
+      "description": "Full-featured admin panel with dark mode and analytics",
+      "price": 39.99
+    },
+    {
+      "id": 3,
+      "language": "Node.js",
+      "icon": "fab fa-node-js",
+      "title": "API Boilerplate",
+      "description": "Complete REST API with authentication and MongoDB",
+      "price": 29.99
+    },
+    {
+      "id": 4,
+      "language": "Python",
+      "icon": "fab fa-python",
+      "title": "AI Chat Bot",
+      "description": "Intelligent chatbot with natural language processing",
+      "price": 59.99
+    },
+    {
+      "id": 5,
+      "language": "Angular",
+      "icon": "fab fa-angular",
+      "title": "Social Media Kit",
+      "description": "Complete social media platform components",
+      "price": 44.99
+    },
+    {
+      "id": 6,
+      "language": "Swift",
+      "icon": "fab fa-swift",
+      "title": "iOS UI Kit",
+      "description": "Modern iOS components with SwiftUI",
+      "price": 34.99
+    },
+    {
+      "id": 7,
+      "language": "Kotlin",
+      "icon": "fab fa-android",
+      "title": "Android Starter",
+      "description": "Material Design 3 components with Jetpack Compose",
+      "price": 39.99
+    },
+    {
+      "id": 8,
+      "language": "AWS",
+      "icon": "fab fa-aws",
+      "title": "Serverless Bundle",
+      "description": "Complete serverless architecture with Lambda",
+      "price": 79.99
+    },
+    {
+      "id": 9,
+      "language": "GraphQL",
+      "icon": "fas fa-database",
+      "title": "API Gateway",
+      "description": "GraphQL API gateway with type safety",
+      "price": 49.99
+    },
+    {
+      "id": 10,
+      "language": "DevOps",
+      "icon": "fab fa-docker",
+      "title": "CI/CD Pipeline",
+      "description": "Complete DevOps pipeline with Docker and Jenkins",
+      "price": 69.99
+    },
+    {
+      "id": 11,
+      "language": "Flutter",
+      "icon": "fas fa-mobile-alt",
+      "title": "E-commerce App",
+      "description": "Cross-platform e-commerce starter kit",
+      "price": 54.99
+    },
+    {
+      "id": 12,
+      "language": "TensorFlow",
+      "icon": "fas fa-brain",
+      "title": "ML Model Pack",
+      "description": "Pre-trained machine learning models collection",
+      "price": 89.99
+    }
+  ]
+}

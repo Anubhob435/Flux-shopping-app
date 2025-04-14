@@ -12,10 +12,6 @@ DB_USER = "ucwyejivetooukiz"
 DB_PASSWORD = "aAo8DieytbUo0FiYV4RY"
 DB_NAME = "buh89x1pi8cgvaw4161i"
 
-# Constants for shop items and prices
-ITEMS = {1: "apple", 2: "mango", 3: "eggs", 4: "milk"}
-PRICES = {"apple": 200, "mango": 100, "eggs": 120, "milk": 50}
-INITIAL_BALANCE = 3000
 
 # Function to connect to the database
 def connect_to_db():
@@ -37,7 +33,7 @@ def register():
         phone = request.form['phone']
         password = request.form['password']
         dob = request.form['dob']
-        balance = INITIAL_BALANCE
+        balance = 30000
 
         conn = connect_to_db()
         cursor = conn.cursor()
@@ -74,48 +70,6 @@ def login():
     return render_template('login.html')
 
 
-'''
-@app.route('/shop/<phone>', methods=['GET', 'POST'])
-def shop(phone):
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM abc WHERE phone = %s", (phone,))
-    user = cursor.fetchone()
-    cursor.close()
-    conn.close()
-
-    if request.method == 'POST':
-        items = request.form.getlist('item')
-        quantities = request.form.getlist('quantity')
-
-        total_cost = sum([PRICES[item] * int(quantity) for item, quantity in zip(items, quantities)])
-        new_balance = user[4] - total_cost
-
-        if 'guess_number' in request.form:
-            guess = int(request.form['guess'])
-            actual_number = random.randint(1, 5)
-            if guess == 3:
-                total_cost *= 0.5  # 50% discount
-                discount = True
-            else:
-                discount = False
-        else:
-            discount = False
-
-        conn = connect_to_db()
-        cursor = conn.cursor()
-        cursor.execute("UPDATE abc SET balance = %s WHERE phone = %s", (new_balance, phone))
-        conn.commit()
-        cursor.close()
-        conn.close()
-
-        return render_template('receipt.html', items=zip(items, quantities), total_cost=total_cost, balance=new_balance, discount=discount)
-
-    return render_template('shop.html', items=ITEMS, prices=PRICES, balance=user[4])
-
-'''
-
-
 @app.route('/shop/<phone>', methods=['GET', 'POST'])
 def shop(phone):
     # Store phone in session when accessing shop
@@ -129,23 +83,10 @@ def shop(phone):
     conn.close()
 
     if request.method == 'POST':
-        items = request.form.getlist('item')
-        quantities = request.form.getlist('quantity')
-
-        # Calculate total cost
-        total_cost = sum(PRICES[item] * int(quantity) for item, quantity in zip(items, quantities))
-        new_balance = user[4] - total_cost
-
-        discount = 0
-        if 'guess_number' in request.form:
-            try:
-                guess = int(request.form['guess'])
-                actual_number = random.randint(1, 5)
-                if guess == actual_number:
-                    discount = total_cost * 0.5  # 50% discount
-                    total_cost -= discount
-            except ValueError:
-                pass  # Handle invalid guess input
+        # Process checkout data from form
+        total = float(request.form.get('total', 0))
+        discount = float(request.form.get('discount', 0))
+        new_balance = user[4] - total
 
         # Update the user's balance
         conn = connect_to_db()
@@ -155,10 +96,16 @@ def shop(phone):
         cursor.close()
         conn.close()
 
-        # Render the receipt
-        return render_template('receipt.html', items=zip(items, quantities), total_cost=total_cost, remaining_balance=new_balance, discount=discount)
+        # Render the receipt - pass phone to the template
+        return render_template('receipt.html', 
+                              total=total, 
+                              remaining_balance=new_balance, 
+                              discount=discount,
+                              phone=phone,
+                              datetime=datetime)
 
-    return render_template('shop.html', items=ITEMS, prices=PRICES, balance=user[4])
+    # For GET requests, just render the shop page with the user's balance
+    return render_template('shop.html', balance=user[4])
 
 
 @app.route('/receipt', methods=['GET', 'POST'])
@@ -181,7 +128,7 @@ def receipt():
                 discount=discount,
                 remaining_balance=remaining_balance,
                 datetime=datetime,
- # Pass phone to template
+                phone=session.get('phone')  # Pass phone from session
             )
         except Exception as e:
             print(f"Error processing checkout: {e}")

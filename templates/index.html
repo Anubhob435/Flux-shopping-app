@@ -13,16 +13,21 @@
     <header class="nav-container">
         <div class="nav-content">
             <a href="#" class="logo">Code<span>Vault</span><i class="fas fa-code"></i></a>
-            <button class="menu-toggle">
+            <button class="menu-toggle" aria-label="Toggle navigation menu">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links">
                 <a href="#categories">Categories</a>
                 <a href="#trending">Trending</a>
                 <a href="#features">Features</a>
-                <a href="{{ url_for('login') }}" class="btn btn-primary">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </a>
+                <div class="auth-buttons">
+                    <a href="{{ url_for('login') }}" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -31,16 +36,47 @@
     <main>
         <!-- HERO SECTION -->
         <section class="hero">
-            <div class="container">
-                <i class="fas fa-code-branch floating-icon"></i>
-                <h1><span class="logo-text">Code<span>Vault</span><i class="fas fa-code"></i></span> Your Premium Software Marketplace</h1>
-                <div class="subtitle-container">
-                    <i class="fas fa-rocket subtitle-icon"></i>
-                    <p class="subtitle">Discover, Download, and Trade Quality Code</p>
+            <div class="hero-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Discover Premium <span class="gradient-text">Code</span> Solutions</h1>
+                        <p class="hero-description">Access high-quality code snippets, templates, and complete projects created by expert developers.</p>
+                        <div class="hero-actions">
+                            <a href="{{ url_for('register') }}" class="btn btn-cta">
+                                Get Started <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#features" class="btn btn-secondary">
+                                Learn More <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="{{ url_for('static', filename='images/code-illustration.png') }}" alt="Code illustration">
+                    </div>
                 </div>
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Search for software solutions...">
+                    <button class="search-btn">Search</button>
+                </div>
+                <div class="stats-bar">
+                    <div class="stat">
+                        <span class="stat-number">1.2k+</span>
+                        <span class="stat-label">Templates</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50k+</span>
+                        <span class="stat-label">Users</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -48,28 +84,82 @@
         <!-- CATEGORIES SECTION -->
         <section id="categories" class="categories-section">
             <div class="container">
-                <h2>Browse Categories</h2>
+                <div class="section-header">
+                    <h2>Explore <span class="gradient-text">Categories</span></h2>
+                    <p class="section-description">Discover software solutions across different programming languages and frameworks</p>
+                </div>
                 <div class="category-grid">
-                    <div class="category-card fade-in">
-                        <i class="fab fa-python"></i>
-                        <h3>Python</h3>
-                        <p>AI, Data Science, Web Apps</p>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Python</h3>
+                            <p>AI, Data Science, Web Apps</p>
+                            <div class="tag-container">
+                                <span class="tag">AI Models</span>
+                                <span class="tag">Data Analysis</span>
+                                <span class="tag">Django</span>
+                            </div>
+                        </div>
+                        <a href="#" class="category-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="category-card fade-in">
-                        <i class="fab fa-java"></i>
-                        <h3>Java</h3>
-                        <p>Enterprise, Android, Spring</p>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Java</h3>
+                            <p>Enterprise, Android, Spring</p>
+                            <div class="tag-container">
+                                <span class="tag">Spring Boot</span>
+                                <span class="tag">Android</span>
+                                <span class="tag">APIs</span>
+                            </div>
+                        </div>
+                        <a href="#" class="category-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="category-card fade-in">
-                        <i class="fas fa-code"></i>
-                        <h3>C/C++</h3>
-                        <p>System, Games, Performance</p>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>C/C++</h3>
+                            <p>System, Games, Performance</p>
+                            <div class="tag-container">
+                                <span class="tag">Game Dev</span>
+                                <span class="tag">Algorithms</span>
+                                <span class="tag">System</span>
+                            </div>
+                        </div>
+                        <a href="#" class="category-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="category-card fade-in">
-                        <i class="fab fa-js"></i>
-                        <h3>JavaScript</h3>
-                        <p>Web, Node.js, React</p>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>JavaScript</h3>
+                            <p>Web, Node.js, React</p>
+                            <div class="tag-container">
+                                <span class="tag">React</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">Vue</span>
+                            </div>
+                        </div>
+                        <a href="#" class="category-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
+                </div>
+                <div class="explore-more">
+                    <a href="#" class="btn btn-outline-secondary">View All Categories</a>
                 </div>
             </div>
         </section>
@@ -77,35 +167,63 @@
         <!-- TRENDING SECTION -->
         <section id="trending" class="trending-section">
             <div class="container">
-                <h2>Trending Now</h2>
+                <div class="section-header">
+                    <h2>Trending <span class="gradient-text">Now</span></h2>
+                    <p class="section-description">Popular code solutions that developers are downloading right now</p>
+                </div>
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-category="all">All</button>
+                        <button class="tab-btn" data-category="frontend">Frontend</button>
+                        <button class="tab-btn" data-category="backend">Backend</button>
+                        <button class="tab-btn" data-category="mobile">Mobile</button>
+                    </div>
+                </div>
                 <div class="trending-grid">
-                    <div class="trending-card fade-in">
+                    <div class="trending-card" data-category="frontend backend">
+                        <div class="trending-badge">HOT</div>
                         <i class="fas fa-chart-line card-icon"></i>
-                        <h3>Data Analytics</h3>
-                        <p>Advanced data processing and visualization tools</p>
+                        <h3>Data Analytics Dashboard</h3>
+                        <p>Interactive analytics dashboard with charts and real-time data visualization</p>
+                        <div class="card-meta">
+                            <span class="downloads"><i class="fas fa-download"></i> 5.2k</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="card-footer">
                             <span class="price">Free</span>
                             <button class="card-btn">Get Access</button>
                         </div>
                     </div>
-                    <div class="trending-card fade-in">
+                    <div class="trending-card" data-category="backend">
+                        <div class="trending-badge">NEW</div>
                         <i class="fas fa-brain card-icon"></i>
-                        <h3>AI & Machine Learning</h3>
-                        <p>Neural networks and deep learning frameworks</p>
+                        <h3>AI & Machine Learning Kit</h3>
+                        <p>Neural networks and deep learning frameworks with pre-trained models</p>
+                        <div class="card-meta">
+                            <span class="downloads"><i class="fas fa-download"></i> 3.8k</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
                         <div class="card-footer">
                             <span class="price">Free</span>
                             <button class="card-btn">Get Access</button>
                         </div>
                     </div>
-                    <div class="trending-card fade-in">
+                    <div class="trending-card" data-category="frontend mobile">
                         <i class="fas fa-shield-alt card-icon"></i>
-                        <h3>Cyber Security</h3>
-                        <p>Enterprise-grade security solutions</p>
+                        <h3>Cyber Security Suite</h3>
+                        <p>Enterprise-grade security solutions for web and mobile applications</p>
+                        <div class="card-meta">
+                            <span class="downloads"><i class="fas fa-download"></i> 4.1k</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
                         <div class="card-footer">
                             <span class="price">Free</span>
                             <button class="card-btn">Get Access</button>
                         </div>
                     </div>
+                </div>
+                <div class="explore-more">
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-secondary">View More Trending Items <i class="fas fa-long-arrow-alt-right"></i></a>
                 </div>
             </div>
         </section>
@@ -113,22 +231,94 @@
         <!-- FEATURES SECTION -->
         <section id="features" class="features-section">
             <div class="container">
-                <h2>Why Choose CodeVault?</h2>
+                <div class="section-header">
+                    <h2>Why Choose <span class="gradient-text">CodeVault</span>?</h2>
+                    <p class="section-description">We offer more than just code snippets - a complete ecosystem for developers</p>
+                </div>
                 <div class="features">
                     <div class="feature-card">
-                        <i class="fas fa-vault feature-icon"></i>
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
                         <h3>Secure Vault</h3>
-                        <p>Store your precious code with enterprise-grade security and version control</p>
+                        <p>Store your precious code with enterprise-grade security and advanced version control</p>
+                        <a href="#" class="feature-link">Learn more <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-graduation-cap feature-icon"></i>
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
                         <h3>Student Benefits</h3>
-                        <p>All software solutions are completely free for students</p>
+                        <p>All software solutions are completely free for students with educational accounts</p>
+                        <a href="#" class="feature-link">Learn more <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="feature-card">
-                        <i class="fab fa-github feature-icon"></i>
+                        <div class="feature-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
                         <h3>Instant Access</h3>
-                        <p>Direct integration with your GitHub account for seamless deployment</p>
+                        <p>Direct integration with your GitHub account for seamless deployment and collaboration</p>
+                        <a href="#" class="feature-link">Learn more <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIAL SECTION -->
+        <section class="testimonial-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What Developers <span class="gradient-text">Say</span></h2>
+                    <p class="section-description">Hear from developers who use CodeVault for their projects</p>
+                </div>
+                <div class="testimonial-container">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"CodeVault has saved me countless hours with their high-quality templates. The code is clean, well-documented, and easy to customize."</p>
+                        <div class="testimonial-author">
+                            <img src="{{ url_for('static', filename='images/testimonial-1.jpg') }}" alt="Developer" class="author-img">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Senior Frontend Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"As a student, having free access to enterprise-level code resources has been invaluable for my learning journey."</p>
+                        <div class="testimonial-author">
+                            <img src="{{ url_for('static', filename='images/testimonial-2.jpg') }}" alt="Developer" class="author-img">
+                            <div class="author-info">
+                                <h4>Alex Chen</h4>
+                                <p>Computer Science Student</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to elevate your development process?</h2>
+                    <p>Join thousands of developers who trust CodeVault for their coding needs.</p>
+                    <div class="cta-buttons">
+                        <a href="{{ url_for('register') }}" class="btn btn-cta">Sign Up Now - It's Free</a>
+                        <a href="#features" class="btn btn-outline">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -137,17 +327,52 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section brand-section">
-                    <h3>CodeVault</h3>
-                    <p>Premium Software Marketplace</p>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section brand-section">
+                        <a href="#" class="footer-logo">Code<span>Vault</span><i class="fas fa-code"></i></a>
+                        <p>Premium Software Marketplace for developers and teams looking for high-quality code solutions.</p>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Categories</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Web Development</a></li>
+                            <li><a href="#">Mobile Apps</a></li>
+                            <li><a href="#">Data Science</a></li>
+                            <li><a href="#">Game Development</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="footer-links-container">
-                    <a href="#" class="footer-link">About Us</a>
-                    <a href="#" class="footer-link">Contact</a>
-                    <a href="#" class="footer-link">Terms</a>
-                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2025 CodeVault. All rights reserved.</p>
             </div>
         </div>
     </footer>
