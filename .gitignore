@@ -1,5 +1,7 @@
 # Environment variables
 .env
+migrate_to_postgres.py
+
 
 # Python
 __pycache__/

@@ -1,4 +1,12 @@
-flask==2.3.3
-mysql-connector-python==8.1.0
-python-dotenv==1.0.0
-gunicorn==21.2.0
+flask
+requests
+mysql-connector-python
+python-dotenv
+gunicorn
+flask-cors
+fastapi
+uvicorn
+pymongo
+python-dotenv
+psycopg2-binary
+sqlalchemy

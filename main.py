@@ -1,26 +1,26 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import random
-import mysql.connector
-from datetime import datetime  # Add this import
+import psycopg2
+import os
+from datetime import datetime
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__, static_url_path='/static')
-app.secret_key = 'your_secret_key'  # Required for session management
+app.secret_key = os.getenv('FLASK_SECRET_KEY', 'fallback_secret_key')
 
-# Constants for database connection
-DB_HOST = "buh89x1pi8cgvaw4161i-mysql.services.clever-cloud.com"
-DB_USER = "ucwyejivetooukiz"
-DB_PASSWORD = "aAo8DieytbUo0FiYV4RY"
-DB_NAME = "buh89x1pi8cgvaw4161i"
+# PostgreSQL database URL
+DATABASE_URL = os.getenv('DATABASE_URL')
 
-
-# Function to connect to the database
+# Function to connect to the PostgreSQL database
 def connect_to_db():
-    return mysql.connector.connect(
-        host=DB_HOST,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        database=DB_NAME
-    )
+    """Connect to PostgreSQL database using environment variables."""
+    if not DATABASE_URL:
+        raise ValueError("Missing DATABASE_URL environment variable. Please check your .env file.")
+    
+    return psycopg2.connect(DATABASE_URL)
 
 @app.route('/')
 def home():
@@ -37,15 +37,19 @@ def register():
 
         conn = connect_to_db()
         cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO abc (phone, name, password, dob, balance) VALUES (%s, %s, %s, %s, %s)",
-            (phone, name, password, dob, balance)
-        )
-        conn.commit()
-        cursor.close()
-        conn.close()
-
-        return redirect(url_for('shop', phone=phone))
+        try:
+            cursor.execute(
+                "INSERT INTO users (phone, name, password, dob, balance) VALUES (%s, %s, %s, %s, %s)",
+                (phone, name, password, dob, balance)
+            )
+            conn.commit()
+            cursor.close()
+            conn.close()
+            return redirect(url_for('shop', phone=phone))
+        except psycopg2.IntegrityError:
+            cursor.close()
+            conn.close()
+            return "Phone number already registered. Please use a different phone number or login."
 
     return render_template('register.html')
 
@@ -57,18 +61,17 @@ def login():
 
         conn = connect_to_db()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM abc WHERE phone = %s", (phone,))
+        cursor.execute("SELECT * FROM users WHERE phone = %s", (phone,))
         user = cursor.fetchone()
         cursor.close()
         conn.close()
 
-        if user and user[2] == password:
+        if user and user[3] == password:  # password is at index 3 in PostgreSQL
             return redirect(url_for('shop', phone=phone))
         else:
             return "Invalid credentials. Please try again."
 
     return render_template('login.html')
-
 
 @app.route('/shop/<phone>', methods=['GET', 'POST'])
 def shop(phone):
@@ -77,7 +80,7 @@ def shop(phone):
     
     conn = connect_to_db()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM abc WHERE phone = %s", (phone,))
+    cursor.execute("SELECT * FROM users WHERE phone = %s", (phone,))
     user = cursor.fetchone()
     cursor.close()
     conn.close()
@@ -86,12 +89,12 @@ def shop(phone):
         # Process checkout data from form
         total = float(request.form.get('total', 0))
         discount = float(request.form.get('discount', 0))
-        new_balance = user[4] - total
+        new_balance = float(user[5]) - total  # balance is at index 5 in PostgreSQL
 
         # Update the user's balance
         conn = connect_to_db()
         cursor = conn.cursor()
-        cursor.execute("UPDATE abc SET balance = %s WHERE phone = %s", (new_balance, phone))
+        cursor.execute("UPDATE users SET balance = %s WHERE phone = %s", (new_balance, phone))
         conn.commit()
         cursor.close()
         conn.close()
@@ -105,8 +108,7 @@ def shop(phone):
                               datetime=datetime)
 
     # For GET requests, just render the shop page with the user's balance
-    return render_template('shop.html', balance=user[4])
-
+    return render_template('shop.html', balance=float(user[5]))
 
 @app.route('/receipt', methods=['GET', 'POST'])
 def receipt():
@@ -144,6 +146,5 @@ def receipt():
         phone=session.get('phone')  # Pass phone to template
     )
 
-
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
