@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeVault - Premium Software Marketplace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>CodeVault - Premium Software Marketplace</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/newicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,7 +12,10 @@
     <!-- HEADER / NAVBAR -->
     <header class="nav-container">
         <div class="nav-content">
-            <a href="#" class="logo">Code<span>Vault</span><i class="fas fa-code"></i></a>
+            <a href="#" class="logo">
+                <img src="{{ url_for('static', filename='images/new_logo.png') }}" alt="CodeVault Logo" style="height: 40px; margin-right: 10px;">
+                CodeVault
+            </a>
             <button class="menu-toggle" aria-label="Toggle navigation menu">
                 <i class="fas fa-bars"></i>
             </button>
@@ -56,7 +59,7 @@
                         </div>
                     </div>
                     <div class="hero-image">
-                        <img src="{{ url_for('static', filename='images/code-illustration.png') }}" alt="Code illustration">
+                        <img src="{{ url_for('static', filename='images/new_logo.png') }}" alt="Code illustration" style="height: 140px;">
                     </div>
                 </div>
                 <div class="search-box">
@@ -330,8 +333,10 @@
         <div class="footer-top">
             <div class="container">
                 <div class="footer-grid">
-                    <div class="footer-section brand-section">
-                        <a href="#" class="footer-logo">Code<span>Vault</span><i class="fas fa-code"></i></a>
+                    <div class="footer-section brand-section">                        <a href="#" class="footer-logo">
+                            <img src="{{ url_for('static', filename='images/new_logo.png') }}" alt="CodeVault Logo" style="height: 30px; margin-right: 8px;">
+                            CodeVault
+                        </a>
                         <p>Premium Software Marketplace for developers and teams looking for high-quality code solutions.</p>
                         <div class="social-icons">
                             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>

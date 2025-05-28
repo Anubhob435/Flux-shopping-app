@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Code Vault - Flux</title>
+<head>    <title>CodeVault Shop</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/newicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,10 +13,9 @@
         <div class="header-left">
             <button class="menu-toggle">
                 <i class="fas fa-bars"></i>
-            </button>
-            <div class="logo-container">
-                <i class="fas fa-code"></i>
-                <span>Code Vault</span>
+            </button>            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/new_logo.png') }}" alt="CodeVault Logo" style="height: 30px; margin-right: 8px;">
+                <span>CodeVault</span>
             </div>
         </div>
 
@@ -44,10 +43,9 @@
 
     <!-- Side Panel -->
     <nav class="side-panel">
-        <div class="side-panel-content">
-            <div class="logo">
-                <i class="fas fa-code"></i>
-                <span>Code Vault</span>
+        <div class="side-panel-content">            <div class="logo">
+                <img src="{{ url_for('static', filename='images/new_logo.png') }}" alt="CodeVault Logo" style="height: 35px; margin-right: 8px;">
+                <span>CodeVault</span>
             </div>
             
             <div class="categories-section">
@@ -129,7 +127,7 @@
         <!-- Welcome Banner -->
         <div class="welcome-banner">
             <div class="welcome-content">
-                <h1>Welcome to Code Vault</h1>
+                <h1>Welcome to CodeVault</h1>
                 <p>Discover premium code templates, components, and solutions</p>
             </div>
             <div class="welcome-actions">

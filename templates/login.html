@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Login - Flux Shopping</title>
+<head>    <title>Login - CodeVault Shopping</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/newicon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="page-container">
-        <div class="login-card">
+    <div class="page-container">        <div class="login-card">
             <div class="logo-section">
                 <div class="logo">
-                    <i class="fas fa-bolt"></i> Flux
+                    <img src="{{ url_for('static', filename='images/new_logo.png') }}" alt="CodeVault Logo" style="height: 35px; margin-right: 8px;">
+
                 </div>
                 <p class="tagline">Shop smarter, faster, better</p>
             </div>
@@ -72,8 +72,7 @@
             </div>
         </div>
         
-        <div class="decoration">
-            <div class="codevault-container">
+        <div class="decoration">            <div class="codevault-container">
                 <h2 class="codevault-text">CodeVault<span class="bracket">&lt;/&gt;</span></h2>
                 <p class="codevault-tagline">Your digital treasures, secured</p>
             </div>
